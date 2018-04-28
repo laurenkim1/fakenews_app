@@ -18,7 +18,7 @@ training_epochs = 200
 display_step = 1
 
 def loadGloveModel():
-    print "Loading Glove Model"
+    print("Loading Glove Model")
     f = open('glove.6B.100d.txt','r')
     model = {}
     for line in f:
@@ -26,7 +26,7 @@ def loadGloveModel():
         word = splitLine[0]
         embedding = np.array([float(val) for val in splitLine[1:]])
         model[word] = embedding
-    print "Done.",len(model)," words loaded!"
+    print("Done.",len(model)," words loaded!")
     return model
 
 # glove word-vec dictionary
@@ -34,10 +34,10 @@ glove = loadGloveModel()
 
 glove_vecs = pd.Series(glove)
 glove_vecs = np.array(list(glove_vecs.values))
-print glove_vecs.shape 
+print(glove_vecs.shape)
 
 glove_keys=np.array(glove.keys(), dtype=object)
-print glove_keys.shape
+print(glove_keys.shape)
 glove_keys = unicode(glove_keys.tolist())
 
 def word2vec(word):
