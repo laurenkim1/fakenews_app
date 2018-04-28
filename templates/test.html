@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+ 
+<div class="block1">
+<h1>Hello {{name}}!</h1>
+  <h2>Here is an interesting quote for you: </h2>
+  <p>
+"The limits of my language are the limits of my mind. All I know is what I have words for."
+  </p>
+<img src="http://www.naturalprogramming.com/images/smilingpython.gif">
+<textarea name="textarea" style="width:450px;height:250px;"></textarea>
+<br>
+<br>
+<button type="button" value="Submit" style="background-color: lightblue" onclick="getClass()">Submit</button>
+<br>
+<br>
+<input type="text" id="result"><br><br>
+
+<script>
+function getClass() {
+   var xhttp = new XMLHttpRequest();
+   var story = document.getElementById("textarea").value;
+   var formData = new FormData();
+   formData.append('story', story);
+   xhttp.open("POST", "http://127.0.0.1:5000/hello/Lauren/ask/", true);
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("result").value = this.responseText;
+      }
+   };
+   xhttp.send(formData);
+}
+</script>
+</div>
+{% endblock %}
